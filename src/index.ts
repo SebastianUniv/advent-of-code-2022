@@ -1,6 +1,7 @@
-import * as day1 from "day-1";
+import * as day1 from "./day-1";
+import * as day2 from "./day-2";
 
-const solutions = [day1];
+const solutions = [day1, day2];
 
 solutions.forEach((solution, index) => {
   const [one, two] = solution.solve();

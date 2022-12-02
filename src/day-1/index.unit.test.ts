@@ -3,7 +3,7 @@ import { solve } from ".";
 
 describe("day 4", () => {
   describe("data", () => {
-    test("data should be correclt parsed", () => {
+    test("data should be correctly parsed", () => {
       const elves = parseInput("test/input.txt");
 
       expect(elves.length).toEqual(5);
