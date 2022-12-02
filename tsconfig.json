@@ -7,9 +7,12 @@
         "target": "es2021",
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "dist"
+        "rootDir": "src",
+        "outDir": "build",
     },
     "lib": [
         "es2021"
-    ]
+    ],
+    "include": ["src/**/*", "src/**/input.txt"],
+    "exclude": ["src/**/*.test.ts"]
 }
