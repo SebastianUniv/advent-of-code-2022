@@ -18,8 +18,8 @@ describe("day 4", () => {
 
       expect(rounds).toStrictEqual([
         [Move.Rock, Strategy.Draw],
-        [Move.Paper, Strategy.Win],
-        [Move.Scissors, Strategy.Lose],
+        [Move.Paper, Strategy.Lose],
+        [Move.Scissors, Strategy.Win],
       ]);
     });
   });

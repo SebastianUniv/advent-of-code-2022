@@ -1,7 +1,7 @@
 import path from "path";
 import fs from "fs";
 
-import { Elf } from "..";
+export type Elf = number[];
 
 export function parseInput(filePath: string) {
   let elves: Elf[] = [];

@@ -1,6 +1,4 @@
-import { parseInput } from "./data/parse";
-
-export type Elf = number[];
+import { Elf, parseInput } from "./data/parse";
 
 function _elvesToDescendingTotalCalories(elves: Elf[]): number[] {
   const elvesByCalorieAmount = elves.map((elf) => {
