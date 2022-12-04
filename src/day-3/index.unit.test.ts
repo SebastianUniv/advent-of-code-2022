@@ -1,7 +1,7 @@
 import { parseInput } from "./data/parse";
 import { solve } from ".";
 
-describe("day 4", () => {
+describe("day 3", () => {
   describe("data", () => {
     test("data should be correctly parsed", () => {
       const backpacks = parseInput("test/input.txt");
@@ -12,16 +12,18 @@ describe("day 4", () => {
     });
   });
   describe("solution", () => {
+    const solution = solve("test/input.txt");
+
     test("part 1 should return correct test score", () => {
       const expectedScore = 157;
 
-      expect(solve("test/input.txt")[0]).toEqual(expectedScore);
+      expect(solution[0]).toEqual(expectedScore);
     });
 
     test("part 2 should return correct test score", () => {
       const expectedScore = 70;
 
-      expect(solve("test/input.txt")[1]).toEqual(expectedScore);
+      expect(solution[1]).toEqual(expectedScore);
     });
   });
 });
