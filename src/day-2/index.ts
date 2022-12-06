@@ -21,7 +21,7 @@ function _getOutcome(round: (Move | Strategy)[]) {
 
 function _partOne(rounds: (Move | Strategy)[][]): number {
   return rounds
-    .map((round) => _getOutcome(round))
+    .map(_getOutcome)
     .reduce((prevScore, currScore) => prevScore + currScore);
 }
 
@@ -47,7 +47,7 @@ function _findOutcome(round: (Move | Strategy)[]) {
 
 function _partTwo(rounds: (Move | Strategy)[][]) {
   return rounds
-    .map((round) => _findOutcome(round))
+    .map(_findOutcome)
     .reduce((prevScore, currScore) => prevScore + currScore);
 }
 

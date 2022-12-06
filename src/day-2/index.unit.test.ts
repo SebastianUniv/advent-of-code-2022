@@ -1,7 +1,7 @@
 import { Move, parseInput, Strategy } from "./data/parse";
 import { solve } from ".";
 
-describe("day 4", () => {
+describe("day 2", () => {
   describe("data", () => {
     test("part 1 data should be correctly parsed", () => {
       const rounds = parseInput("test/input.txt", Move);

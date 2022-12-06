@@ -6,8 +6,8 @@ export type RangePair = [first: Range, second: Range];
 
 function _lineToRangePair(line: string): RangePair {
   return line.split(",").map((range) => {
-    return range.split("-").map((char) => +char) as unknown as [Range, Range];
-  }) as unknown as RangePair;
+    return range.split("-").map((char) => +char);
+  }) as RangePair;
 }
 
 export function parseInput(filePath: string) {
