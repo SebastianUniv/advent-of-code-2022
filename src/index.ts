@@ -3,8 +3,9 @@ import * as day2 from "./day-2";
 import * as day3 from "./day-3";
 import * as day4 from "./day-4";
 import * as day5 from "./day-5";
+import * as day6 from "./day-6";
 
-const solutions = [day1, day2, day3, day4, day5];
+const solutions = [day1, day2, day3, day4, day5, day6];
 
 solutions.forEach((solution, index) => {
   const [one, two] = solution.solve();

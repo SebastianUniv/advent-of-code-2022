@@ -4,48 +4,70 @@ import fs from "fs";
 export type Stack = string[];
 export type Move = [amount: number, from: number, to: number];
 
-export function parseInput(filePath: string): [Stack[], Move[]] {
-  const data = fs.readFileSync(path.join(__dirname, `./${filePath}`), "utf-8");
-
-  const [crates, moves] = data.split(/\n\n/);
-
-  const cratesByLine = crates.split(/\r?\n/);
-  const stackLine = cratesByLine
-    .pop()
-    ?.split("")
+function _stackLineToStackCount(stackLine: string): number {
+  return stackLine
+    .split("")
     .filter((char) => char != " ")
     .map((char) => +char)
     .reduce((currentMax, currentValue) =>
       currentMax > currentValue ? currentMax : currentValue
     );
+}
 
-  const crateLines = cratesByLine.reduceRight((cratesByStack, line) => {
-    const parsedLine = line.split("").reduce((prev, current, index) => {
-      const isCrateTypeIndex = index == 1 || (index - 1) % 4 == 0;
-      const hasCrate = current !== " ";
+function _lineToCrateByStacks(line: string) {
+  return line.split("").reduce((prev, current, index) => {
+    const isCrateTypeIndex = index == 1 || (index - 1) % 4 == 0;
+    const hasCrate = current !== " ";
 
-      if (!hasCrate || !isCrateTypeIndex) {
-        return prev;
-      }
+    if (!hasCrate || !isCrateTypeIndex) {
+      return prev;
+    }
 
-      const stackIndex = Math.floor(index / 4);
+    const stackIndex = Math.floor(index / 4);
 
-      return [...prev, [current, stackIndex]] as [string, number][];
-    }, [] as [string, number][]);
+    return [...prev, [current, stackIndex]] as [string, number][];
+  }, [] as [string, number][]);
+}
 
-    parsedLine.forEach(([crate, index]) => {
-      cratesByStack[index].push(crate);
-    });
+function _crateLinesToStacks(
+  crateLines: string[],
+  stackCount: number
+): Stack[] {
+  return crateLines.reduceRight<Stack[]>(
+    (cratesByStacks, line) => {
+      const crateByStacks = _lineToCrateByStacks(line);
 
-    return cratesByStack;
-  }, [...Array(stackLine)].map(() => []) as string[][]);
+      crateByStacks.forEach(([crate, index]) => {
+        cratesByStacks[index].push(crate);
+      });
 
-  const moveLines: Move[] = moves.split(/\r?\n/).map((moveLine) => {
+      return cratesByStacks;
+    },
+    [...Array(stackCount)].map(() => [])
+  );
+}
+
+function _moveLinesToMoves(moveLines: string[]): Move[] {
+  return moveLines.map((moveLine) => {
     return moveLine
       .split(" ")
       .filter((char) => +char)
       .map((char) => +char) as Move;
   });
+}
 
-  return [crateLines, moveLines];
+export function parseInput(filePath: string): [Stack[], Move[]] {
+  const data = fs.readFileSync(path.join(__dirname, `./${filePath}`), "utf-8");
+
+  const [crates, moves] = data.split(/\n\n/);
+  const crateLines = crates.split(/\r?\n/);
+
+  const stackCount = _stackLineToStackCount(crateLines.pop()!);
+
+  const moveLines = moves.split(/\r?\n/);
+
+  return [
+    _crateLinesToStacks(crateLines, stackCount),
+    _moveLinesToMoves(moveLines),
+  ];
 }

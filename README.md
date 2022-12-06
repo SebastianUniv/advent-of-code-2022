@@ -9,6 +9,7 @@ This repository includes solutions to the advent of code 2022.
 - [x] 3
 - [x] 4
 - [x] 5
+- [x] 6
 
 ## Environment
 
