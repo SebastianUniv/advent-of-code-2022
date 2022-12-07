@@ -1,12 +1,11 @@
 import fs from "fs";
 import path from "path";
 
-type File = [name: string, size: number];
 export type Directory = {
   directories: {
     [name: string]: Directory;
   };
-  files: File[];
+  filesSize: number;
 };
 
 function _pointerToDirectory(pointer: string[], fileDirectory: Directory) {
@@ -14,7 +13,7 @@ function _pointerToDirectory(pointer: string[], fileDirectory: Directory) {
     if (!Object.hasOwn(directories, next)) {
       directories[next] = {
         directories: {},
-        files: [],
+        filesSize: 0,
       };
     }
 
@@ -38,7 +37,7 @@ function _mutatePointer(pointer: string[], location: string) {
 export function parseInput(filePath: string) {
   let fileDirectory: Directory = {
     directories: {},
-    files: [],
+    filesSize: 0,
   };
   const data = fs.readFileSync(path.join(__dirname, `./${filePath}`), "utf-8");
   const lines = data.split(/\r?\n/);
@@ -58,10 +57,9 @@ export function parseInput(filePath: string) {
       return;
     }
 
-    const [size, name] = parsedLine.slice(0, 2);
     const ref = _pointerToDirectory(pointer, fileDirectory);
 
-    ref.files.push([name, +size]);
+    ref.filesSize += +parsedLine[0];
   });
 
   return fileDirectory;

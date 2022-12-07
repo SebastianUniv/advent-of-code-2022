@@ -1,9 +1,8 @@
 import { Directory, parseInput } from "./data/parse";
 
 function _calcSize(candidate: Directory, fn?: any): number {
-  const { directories, files } = candidate;
+  const { directories, filesSize } = candidate;
 
-  const filesSize = files.reduce((prev, [_, size]) => prev + size, 0);
   const dirsSize = Object.keys(directories).reduce((prev, current) => {
     return prev + _calcSize(directories[current], fn);
   }, 0);
