@@ -10,31 +10,16 @@ describe("day 7", () => {
         directories: {
           a: {
             directories: {
-              e: { directories: {}, files: [["i", 584]], size: 0 },
+              e: { directories: {}, filesSize: 584 },
             },
-            files: [
-              ["f", 29116],
-              ["g", 2557],
-              ["h.lst", 62596],
-            ],
-            size: 0,
+            filesSize: 94269,
           },
           d: {
             directories: {},
-            files: [
-              ["j", 4060174],
-              ["d.log", 8033020],
-              ["d.ext", 5626152],
-              ["k", 7214296],
-            ],
-            size: 0,
+            filesSize: 24933642,
           },
         },
-        files: [
-          ["b.txt", 14848514],
-          ["c.dat", 8504156],
-        ],
-        size: 0,
+        filesSize: 23352670,
       });
     });
   });
