@@ -28,22 +28,22 @@ function _headPositionToTailMove(tail: Pointer, head: Pointer): Pointer {
   let [xt, yt] = tail;
   const [xh, yh] = head;
 
-  const mutateHorizontal = () => xt + (xh - xt > 0 ? 1 : -1);
-  const mutateVertical = () => yt + (yh - yt > 0 ? 1 : -1);
+  const mutateHorizontal = () => (xt = xt + (xh - xt > 0 ? 1 : -1));
+  const mutateVertical = () => (yt = yt + (yh - yt > 0 ? 1 : -1));
 
   if (Math.abs(xh - xt) === 2 && yh - yt === 0) {
-    xt = mutateHorizontal();
+    mutateHorizontal();
   }
   if (xh - xt === 0 && Math.abs(yh - yt) === 2) {
-    yt = mutateVertical();
+    mutateVertical();
   }
   if (
     (Math.abs(xh - xt) === 2 && Math.abs(yh - yt) === 1) ||
     (Math.abs(xh - xt) === 1 && Math.abs(yh - yt) === 2) ||
     (Math.abs(xh - xt) === 2 && Math.abs(yh - yt) === 2)
   ) {
-    xt = mutateHorizontal();
-    yt = mutateVertical();
+    mutateHorizontal();
+    mutateVertical();
   }
 
   return [xt, yt];
