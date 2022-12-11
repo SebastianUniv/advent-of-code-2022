@@ -1,7 +1,7 @@
 import { parseInput } from "./data/parse";
 import { solve } from ".";
 
-describe("day 4", () => {
+describe("day 10", () => {
   describe("data", () => {
     test("data should be correctly parsed", () => {
       const commands = parseInput("test/input.txt");
