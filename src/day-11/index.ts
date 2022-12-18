@@ -35,6 +35,7 @@ function _partOne(monkeys: Monkey[]) {
 }
 
 function _partTwo(monkeys: Monkey[]) {
+  // FIXME: Should actually be LCM
   const divisorProduct = monkeys.reduce(
     (product, monkey) => product * monkey.divisor,
     1
@@ -46,7 +47,5 @@ function _partTwo(monkeys: Monkey[]) {
 }
 
 export function solve(filePath: string = "input.txt") {
-  const monkeys = parseInput(filePath);
-
-  return [_partOne(monkeys), _partTwo(parseInput(filePath))];
+  return [_partOne(parseInput(filePath)), _partTwo(parseInput(filePath))];
 }
