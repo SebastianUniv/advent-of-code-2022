@@ -13,6 +13,7 @@ import * as day12 from "./day-12";
 import * as day13 from "./day-13";
 import * as day14 from "./day-14";
 import * as day15 from "./day-15";
+import * as day16 from "./day-16";
 
 const solutions = [
   day1,
@@ -29,6 +30,7 @@ const solutions = [
   day12,
   day13,
   day15,
+  day16,
 ];
 
 solutions.forEach((solution, index) => {
